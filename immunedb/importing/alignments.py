@@ -449,6 +449,7 @@ def parse_airr(line, v_germlines, j_germlines):
     alignment.germline = aligned_germ.replace('.', '-')
     alignment.v_gene = {GeneName(c) for c in line['v_call'].split(',')}
     alignment.j_gene = {GeneName(c) for c in line['j_call'].split(',')}
+    alignment.c_call = (line.get('c_call') or '').strip() or None
     alignment.cdr3_start = cdr3_start
     alignment.cdr3_num_nts = len(cdr3_seq)
     alignment.locally_aligned = True
