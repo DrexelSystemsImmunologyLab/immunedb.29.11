@@ -290,6 +290,7 @@ def preprocess_airr(reader):
         'rev_comp',
         'v_call',
         'j_call',
+        'c_call',
         'sequence_alignment',
         'germline_alignment',
         'v_alignment_end',
@@ -308,7 +309,7 @@ def preprocess_airr(reader):
         'cdr3_start',
     ]
     for full_line in reader:
-        line = {k: full_line[k] for k in headers_to_keep}
+        line = {k: full_line.get(k, '') for k in headers_to_keep}
         copies = re.search(r'DUPCOUNT=(\d+)', line['sequence_id'])
         copies = int(copies.group(1)) if copies else 1
         line['sequence_id'] = (
