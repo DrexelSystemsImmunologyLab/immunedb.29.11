@@ -39,6 +39,7 @@ do
         -num_threads 12 \
         -domain_system imgt \
         -ig_seqtype $seq_type \
-        -auxiliary_data ${IGDATA}/optional_file/${species}_gl.aux \
+        -auxiliary_data ${IGDATA?}/optional_file/${species}_gl.aux \
+        $( [ "$seq_type" = "Ig" ] && echo "-c_region_db ${IGDATA?}/database/ncbi_${species}_c_genes" ) \
         -organism ${species} > $out_fn
 done
